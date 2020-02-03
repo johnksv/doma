@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  doma:
+    container_name: doma
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "../src:/var/www/html:rw"
+      - "./dev-config.php:/var/www/html/config.php:rw"
+      - "./phpinfo.php:/var/www/html/phpinfo.php:rw"
+    ports:
+    - 8080:80
+    depends_on:
+      - doma-db
+    networks:
+      - database-net
+
+  doma-db:
+    container_name: doma-db
+    image: mysql:8.0.19
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "domadb"
+      MYSQL_USER: "doma-developer"
+      MYSQL_PASSWORD: "orienteering"
+    volumes:
+      - sqldata:/var/lib/mysql
+    networks:
+      - database-net
+
+networks:
+  database-net:
+    driver: "bridge"
+volumes:
+  sqldata:
+    driver: "local"

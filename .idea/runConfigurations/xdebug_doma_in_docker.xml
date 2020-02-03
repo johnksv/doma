@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="xdebug-doma-in-docker" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="doma-in-docker-server" session_id="DOMA_DEVELOPMENT_XDEBUG">
+    <method v="2" />
+  </configuration>
+</component>
